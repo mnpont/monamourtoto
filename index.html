@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Mon Amour</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💝</text></svg>">
+</head>
+<body>
+  <div id="app">
+    <!-- PHASE 1: Closed box with ribbon -->
+    <div id="closed-box-scene" class="scene active">
+      <div id="closed-box-wrapper">
+        <div id="closed-box">
+          <!-- Box body -->
+          <div class="box-body">
+            <div class="box-shine"></div>
+          </div>
+          <!-- Box lid -->
+          <div class="box-lid">
+            <div class="box-lid-top"></div>
+            <div class="box-lid-front"></div>
+          </div>
+          <!-- Ribbon vertical -->
+          <div class="ribbon ribbon-v"></div>
+          <!-- Ribbon horizontal -->
+          <div class="ribbon ribbon-h"></div>
+          <!-- Bow -->
+          <div id="bow" class="bow">
+            <div class="bow-loop bow-left"></div>
+            <div class="bow-loop bow-right"></div>
+            <div class="bow-knot"></div>
+            <div class="bow-tail bow-tail-left"></div>
+            <div class="bow-tail bow-tail-right"></div>
+          </div>
+          <!-- Click hint -->
+          <div id="click-hint">
+            <span>tap the bow</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2: Confetti & hearts burst (overlay) -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- PHASE 3: Open box with cards and heart compliments -->
+    <div id="open-box-scene" class="scene">
+      <div id="open-box-area">
+        <!-- Open box: lid and base side by side -->
+        <div id="open-box-container">
+          <div id="open-lid">
+            <div class="lid-inner"></div>
+            <div class="lid-side"></div>
+          </div>
+          <div id="open-base">
+            <div class="base-inner"></div>
+            <div class="base-front"></div>
+            <!-- Card inside box -->
+            <div id="thank-you-card" class="message-card">
+              <span>thank you for being so...</span>
+            </div>
+          </div>
+        </div>
+        <!-- Two top cards -->
+        <div id="top-cards">
+          <div class="message-card valentine-card">
+            <span>happy valentine's day</span>
+          </div>
+          <div class="message-card amour-card">
+            <span>mon amour</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flippable heart cards -->
+      <div id="hearts-container"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
