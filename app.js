@@ -1,13 +1,8 @@
 (function () {
   'use strict';
 
-  // ===== ELEMENTS =====
-  var closedScene = document.getElementById('closed-scene');
-  var openScene = document.getElementById('open-scene');
-  var closedBox = document.getElementById('closed-box');
-  var canvas = document.getElementById('confetti-canvas');
-  var ctx = canvas.getContext('2d');
-  var heartsContainer = document.getElementById('hearts-container');
+  // ===== ELEMENTS (set in init) =====
+  var closedScene, openScene, closedBox, canvas, ctx, heartsContainer;
 
   // ===== COMPLIMENTS =====
   var compliments = [
@@ -21,14 +16,27 @@
 
   // ===== INIT =====
   function init() {
+    closedScene = document.getElementById('closed-scene');
+    openScene = document.getElementById('open-scene');
+    closedBox = document.getElementById('closed-box');
+    canvas = document.getElementById('confetti-canvas');
+    ctx = canvas.getContext('2d');
+    heartsContainer = document.getElementById('hearts-container');
+
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    closedBox.addEventListener('click', handleBoxClick);
+    // Prevent default on touchstart to avoid 300ms delay and scroll
+    closedBox.addEventListener('touchstart', function (e) {
+      e.preventDefault();
+    }, { passive: false });
+
     closedBox.addEventListener('touchend', function (e) {
       e.preventDefault();
       handleBoxClick();
     });
+
+    closedBox.addEventListener('click', handleBoxClick);
   }
 
   function resizeCanvas() {

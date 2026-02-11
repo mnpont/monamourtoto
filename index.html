@@ -20,6 +20,11 @@
       <div id="closed-box" class="clickable">
         <!-- Heart-shaped box (SVG top-down) -->
         <svg class="heart-box-svg" viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <clipPath id="heart-clip">
+              <path d="M120 205 C120 205 18 145 18 78 C18 35 52 12 85 12 C102 12 116 21 120 32 C124 21 138 12 155 12 C188 12 222 35 222 78 C222 145 120 205 120 205Z"/>
+            </clipPath>
+          </defs>
           <!-- Box shadow -->
           <path class="box-shadow" d="M120 210 C120 210 15 150 15 80 C15 35 50 10 85 10 C103 10 117 20 120 32 C123 20 137 10 155 10 C190 10 225 35 225 80 C225 150 120 210 120 210Z"
                 fill="rgba(0,0,0,0.1)" transform="translate(3,5)"/>
@@ -27,10 +32,12 @@
           <path class="box-body-path" d="M120 205 C120 205 18 145 18 78 C18 35 52 12 85 12 C102 12 116 21 120 32 C124 21 138 12 155 12 C188 12 222 35 222 78 C222 145 120 205 120 205Z"/>
           <!-- Subtle inner highlight -->
           <ellipse cx="80" cy="60" rx="28" ry="16" fill="rgba(255,255,255,0.12)" transform="rotate(-20 80 60)"/>
+          <!-- Ribbons clipped to heart shape -->
+          <g class="ribbon-group" clip-path="url(#heart-clip)">
+            <rect class="ribbon-svg ribbon-svg-v" x="109" y="0" width="22" height="220"/>
+            <rect class="ribbon-svg ribbon-svg-h" x="0" y="84" width="240" height="22"/>
+          </g>
         </svg>
-        <!-- Ribbon cross -->
-        <div class="ribbon ribbon-v"></div>
-        <div class="ribbon ribbon-h"></div>
         <!-- Bow on top -->
         <div class="bow">
           <div class="bow-loop bow-left"></div>

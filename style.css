@@ -69,6 +69,7 @@ html, body {
   width: 240px;
   height: 220px;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .heart-box-svg {
@@ -83,35 +84,17 @@ html, body {
   stroke-width: 4;
 }
 
-/* Ribbon cross on box (top-down) */
-#closed-box .ribbon {
-  position: absolute;
-  background: var(--pink-ribbon);
-  border: 2px solid var(--pink-ribbon-dark);
-  z-index: 2;
+/* SVG Ribbons on heart box (clipped to heart shape) */
+.ribbon-svg {
+  fill: var(--pink-ribbon);
+  stroke: var(--pink-ribbon-dark);
+  stroke-width: 2;
 }
 
-#closed-box .ribbon-v {
-  width: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 8%;
-  height: 84%;
-  border-radius: 2px;
-}
-
-#closed-box .ribbon-h {
-  height: 22px;
-  top: 38%;
-  left: 10%;
-  width: 80%;
-  border-radius: 2px;
-}
-
-/* Bow centered on top of ribbon cross */
+/* Bow centered at ribbon cross (middle of heart) */
 .bow {
   position: absolute;
-  top: 28%;
+  top: 36%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
@@ -229,21 +212,17 @@ html, body {
   100% { transform: rotate(-70deg) translateY(30px) translateX(20px); opacity: 0; }
 }
 
-/* Ribbon slide off */
-#closed-box.untying .ribbon-v {
-  animation: ribbonVOff 0.6s 0.4s ease-in forwards;
+/* SVG Ribbon fade off */
+#closed-box.untying .ribbon-svg-v {
+  animation: ribbonSvgOff 0.6s 0.4s ease-in forwards;
 }
-#closed-box.untying .ribbon-h {
-  animation: ribbonHOff 0.6s 0.4s ease-in forwards;
+#closed-box.untying .ribbon-svg-h {
+  animation: ribbonSvgOff 0.6s 0.4s ease-in forwards;
 }
 
-@keyframes ribbonVOff {
-  0% { opacity: 1; transform: translateX(-50%); }
-  100% { opacity: 0; transform: translateX(-50%) translateY(-60px); }
-}
-@keyframes ribbonHOff {
+@keyframes ribbonSvgOff {
   0% { opacity: 1; }
-  100% { opacity: 0; transform: translateX(50px); }
+  100% { opacity: 0; }
 }
 
 /* Box shake */
@@ -524,9 +503,6 @@ html, body {
     height: 175px;
   }
 
-  #closed-box .ribbon-v { width: 18px; }
-  #closed-box .ribbon-h { height: 18px; }
-
   .bow-loop { width: 30px; height: 22px; }
   .bow-left { left: -28px; }
   .bow-right { right: -28px; }
@@ -553,9 +529,6 @@ html, body {
     width: 300px;
     height: 275px;
   }
-
-  #closed-box .ribbon-v { width: 28px; }
-  #closed-box .ribbon-h { height: 28px; }
 
   .bow-loop { width: 48px; height: 36px; }
   .bow-left { left: -46px; }
