@@ -74,10 +74,7 @@
       buildHearts();
     }, 2500);
 
-    // 5. Stop confetti
-    setTimeout(function () {
-      stopConfetti();
-    }, 5000);
+    // Confetti keeps going indefinitely
   }
 
   // ===== CONFETTI =====
@@ -112,15 +109,15 @@
   function startConfetti() {
     confettiRunning = true;
     confettiParticles = [];
-    for (var i = 0; i < 140; i++) {
+    for (var i = 0; i < 200; i++) {
       confettiParticles.push(makeParticle(true));
     }
     var interval = setInterval(function () {
       if (!confettiRunning) { clearInterval(interval); return; }
-      for (var j = 0; j < 4; j++) {
+      for (var j = 0; j < 6; j++) {
         confettiParticles.push(makeParticle(false));
       }
-    }, 120);
+    }, 100);
     renderConfetti();
   }
 
@@ -192,14 +189,14 @@
     // Determine heart size based on screen
     var isMobile = W < 420;
     var isDesktop = W >= 768;
-    var heartW = isMobile ? 64 : (isDesktop ? 100 : 80);
-    var heartH = isMobile ? 59 : (isDesktop ? 92 : 74);
+    var heartW = isMobile ? 80 : (isDesktop ? 120 : 100);
+    var heartH = isMobile ? 74 : (isDesktop ? 110 : 92);
 
-    // Define the center exclusion zone (where box/cards are)
+    // Define the center exclusion zone (wider for side-by-side box halves)
     var cx = W / 2;
     var cy = H / 2;
-    var exW = isDesktop ? 260 : (isMobile ? 170 : 210);
-    var exH = isDesktop ? 320 : (isMobile ? 240 : 280);
+    var exW = isDesktop ? 380 : (isMobile ? 240 : 310);
+    var exH = isDesktop ? 260 : (isMobile ? 180 : 220);
 
     // Place hearts scattered around the page avoiding center
     var positions = computePositions(shuffled.length, W, H, heartW, heartH, cx, cy, exW, exH);

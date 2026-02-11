@@ -63,46 +63,27 @@
           </div>
         </div>
 
-        <!-- Open box: lid (top half) and base (bottom half) separated -->
+        <!-- Open box: lid and base side by side (like an opened chocolate box) -->
         <div id="open-box">
-          <!-- Lid = top half of heart, slightly separated upward -->
-          <div id="box-lid-half">
-            <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg">
-              <clipPath id="lid-clip">
-                <rect x="0" y="0" width="240" height="115"/>
-              </clipPath>
-              <g clip-path="url(#lid-clip)">
-                <path d="M120 205 C120 205 18 145 18 78 C18 35 52 12 85 12 C102 12 116 21 120 32 C124 21 138 12 155 12 C188 12 222 35 222 78 C222 145 120 205 120 205Z"
-                      fill="var(--magenta-light)" stroke="var(--magenta-dark)" stroke-width="4"/>
-              </g>
+          <!-- Lid (left, slightly tilted) -->
+          <div id="box-lid">
+            <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+              <path d="M120 205 C120 205 18 145 18 78 C18 35 52 12 85 12 C102 12 116 21 120 32 C124 21 138 12 155 12 C188 12 222 35 222 78 C222 145 120 205 120 205Z"
+                    fill="var(--magenta-light)" stroke="var(--magenta-dark)" stroke-width="4"/>
             </svg>
-            <!-- Loose ribbon strings hanging from lid -->
+            <!-- Loose ribbon pieces on lid -->
             <div class="loose-ribbon lr-1"></div>
             <div class="loose-ribbon lr-2"></div>
           </div>
-
-          <!-- Base = bottom half of heart -->
-          <div id="box-base-half">
-            <svg viewBox="0 0 240 130" xmlns="http://www.w3.org/2000/svg">
-              <clipPath id="base-clip">
-                <rect x="0" y="85" width="240" height="130"/>
-              </clipPath>
-              <g clip-path="url(#base-clip)">
-                <path d="M120 205 C120 205 18 145 18 78 C18 35 52 12 85 12 C102 12 116 21 120 32 C124 21 138 12 155 12 C188 12 222 35 222 78 C222 145 120 205 120 205Z"
-                      fill="var(--magenta)" stroke="var(--magenta-dark)" stroke-width="4"/>
-              </g>
-              <!-- Inner rim of base -->
-              <clipPath id="base-inner-clip">
-                <rect x="0" y="88" width="240" height="126"/>
-              </clipPath>
-              <g clip-path="url(#base-inner-clip)">
-                <path d="M120 200 C120 200 25 143 25 80 C25 40 55 18 85 18 C100 18 114 26 120 36 C126 26 140 18 155 18 C185 18 215 40 215 80 C215 143 120 200 120 200Z"
-                      fill="var(--magenta-dark)" opacity="0.3"/>
-              </g>
+          <!-- Base (right, the open box) -->
+          <div id="box-base">
+            <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+              <path d="M120 205 C120 205 18 145 18 78 C18 35 52 12 85 12 C102 12 116 21 120 32 C124 21 138 12 155 12 C188 12 222 35 222 78 C222 145 120 205 120 205Z"
+                    fill="var(--magenta)" stroke="var(--magenta-dark)" stroke-width="4"/>
+              <!-- Inner shadow for box depth -->
+              <path d="M120 200 C120 200 25 143 25 80 C25 40 55 18 85 18 C100 18 114 26 120 36 C126 26 140 18 155 18 C185 18 215 40 215 80 C215 143 120 200 120 200Z"
+                    fill="var(--magenta-dark)" opacity="0.3"/>
             </svg>
-            <!-- Loose ribbon strings hanging from base -->
-            <div class="loose-ribbon lr-3"></div>
-            <div class="loose-ribbon lr-4"></div>
           </div>
         </div>
 
