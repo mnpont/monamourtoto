@@ -63,16 +63,17 @@
       startConfetti();
     }, 1400);
 
-    // 4. Fade out closed box, transition to open scene
+    // 4. Explosive burst - box pops outward and disappears fast
     setTimeout(function () {
       closedBox.classList.add('fading');
-    }, 1900);
+    }, 1650);
 
+    // 5. Scene switch - everything bursts from center
     setTimeout(function () {
       closedScene.classList.remove('active');
       openScene.classList.add('active');
       buildHearts();
-    }, 2500);
+    }, 1900);
 
     // Confetti keeps going indefinitely
   }
@@ -192,23 +193,36 @@
     var heartW = isMobile ? 80 : (isDesktop ? 120 : 100);
     var heartH = isMobile ? 74 : (isDesktop ? 110 : 92);
 
-    // Define the center exclusion zone (wider for side-by-side box halves)
+    // Center of screen (where box was)
     var cx = W / 2;
     var cy = H / 2;
+
+    // Define the center exclusion zone (wider for side-by-side box halves)
     var exW = isDesktop ? 380 : (isMobile ? 240 : 310);
     var exH = isDesktop ? 260 : (isMobile ? 180 : 220);
 
-    // Place hearts scattered around the page avoiding center
+    // Compute final positions scattered around the page
     var positions = computePositions(shuffled.length, W, H, heartW, heartH, cx, cy, exW, exH);
 
     shuffled.forEach(function (text, i) {
       var pos = positions[i];
-      var card = createHeartCard(text, pos.x, pos.y);
+      var rot = (Math.random() - 0.5) * 20;
+
+      // Create card at center of screen (where box was)
+      var card = createHeartCard(text, cx - heartW / 2, cy - heartH / 2);
       heartsContainer.appendChild(card);
-      // Stagger entrance
+
+      // Burst from center to final position with staggered delay
       setTimeout(function () {
-        card.classList.add('entered');
-      }, 300 + i * 80);
+        card.style.transition = 'left 0.8s cubic-bezier(0.22, 1, 0.36, 1), ' +
+          'top 0.8s cubic-bezier(0.22, 1, 0.36, 1), ' +
+          'transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), ' +
+          'opacity 0.4s ease-out';
+        card.style.left = pos.x + 'px';
+        card.style.top = pos.y + 'px';
+        card.style.transform = 'rotate(' + rot + 'deg) scale(1)';
+        card.style.opacity = '1';
+      }, 20 + i * 35);
     });
   }
 
@@ -264,10 +278,7 @@
     card.className = 'heart-card';
     card.style.left = x + 'px';
     card.style.top = y + 'px';
-
-    // Random slight rotation for organic feel
-    var rot = (Math.random() - 0.5) * 20;
-    card.style.transform = 'rotate(' + rot + 'deg)';
+    card.style.transform = 'scale(0)';
 
     var heartSVG =
       '<svg class="heart-svg" viewBox="0 0 80 74" xmlns="http://www.w3.org/2000/svg">' +
