@@ -2,7 +2,7 @@
   'use strict';
 
   // ===== ELEMENTS (set in init) =====
-  var closedScene, openScene, closedBox, canvas, ctx, heartsContainer;
+  var closedScene, openScene, closedBox, closedBoxWrapper, canvas, ctx, heartsContainer;
 
   // ===== COMPLIMENTS =====
   var compliments = [
@@ -19,6 +19,7 @@
     closedScene = document.getElementById('closed-scene');
     openScene = document.getElementById('open-scene');
     closedBox = document.getElementById('closed-box');
+    closedBoxWrapper = document.getElementById('closed-box-wrapper');
     canvas = document.getElementById('confetti-canvas');
     ctx = canvas.getContext('2d');
     heartsContainer = document.getElementById('hearts-container');
@@ -54,28 +55,22 @@
 
     // 2. Shake the box after ribbons gone
     setTimeout(function () {
-      closedBox.classList.add('shaking');
+      closedBoxWrapper.classList.add('shaking');
     }, 900);
 
-    // 3. Burst + confetti
+    // 3. Open lid like a door + confetti explosion
     setTimeout(function () {
-      closedBox.classList.add('bursting');
+      closedBoxWrapper.classList.add('opening');
+      closedBox.classList.add('lid-opening');
       startConfetti();
     }, 1400);
 
-    // 4. Explosive burst - box pops outward and disappears fast
-    setTimeout(function () {
-      closedBox.classList.add('fading');
-    }, 1650);
-
-    // 5. Scene switch - everything bursts from center
+    // 4. Scene switch after lid is open
     setTimeout(function () {
       closedScene.classList.remove('active');
       openScene.classList.add('active');
       buildHearts();
-    }, 1900);
-
-    // Confetti keeps going indefinitely
+    }, 2300);
   }
 
   // ===== CONFETTI =====

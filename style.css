@@ -64,12 +64,37 @@ html, body {
 /* ============================================
    SCENE 1: CLOSED HEART BOX (top-down view)
    ============================================ */
-#closed-box {
+#closed-box-wrapper {
   position: relative;
   width: 240px;
   height: 220px;
+  perspective: 1200px;
+}
+
+#closed-box-base {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#closed-box-base .heart-box-svg {
+  width: 100%;
+  height: 100%;
+}
+
+#closed-box-wrapper.opening #closed-box-base {
+  opacity: 1;
+}
+
+#closed-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
   touch-action: manipulation;
+  transform-style: preserve-3d;
+  z-index: 1;
 }
 
 .heart-box-svg {
@@ -225,8 +250,8 @@ html, body {
   100% { opacity: 0; }
 }
 
-/* Box shake */
-#closed-box.shaking {
+/* Box shake (applied to wrapper so whole box shakes) */
+#closed-box-wrapper.shaking {
   animation: boxShake 0.5s ease-in-out;
 }
 
@@ -243,25 +268,22 @@ html, body {
   90% { transform: translate(-1px); }
 }
 
-/* Box burst scale */
-#closed-box.bursting .heart-box-svg {
-  animation: burst 0.4s ease-out;
+/* Lid opens like a door – hinged on the left edge */
+#closed-box.lid-opening {
+  transform-origin: left center;
+  animation: lidSwingOpen 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-@keyframes burst {
-  0% { transform: scale(1); }
-  40% { transform: scale(1.15); }
-  100% { transform: scale(1); }
-}
-
-/* Box fade out - explosive burst */
-#closed-box.fading {
-  animation: burstDisappear 0.35s ease-out forwards;
-}
-
-@keyframes burstDisappear {
-  0% { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(1.8); }
+@keyframes lidSwingOpen {
+  0% {
+    transform: rotateY(0deg);
+  }
+  20% {
+    transform: rotateY(-5deg) translateZ(40px);
+  }
+  100% {
+    transform: rotateY(-105deg) translateZ(40px);
+  }
 }
 
 /* ============================================
@@ -478,7 +500,7 @@ html, body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 420px) {
-  #closed-box {
+  #closed-box-wrapper {
     width: 190px;
     height: 175px;
   }
@@ -503,7 +525,7 @@ html, body {
 }
 
 @media (min-width: 768px) {
-  #closed-box {
+  #closed-box-wrapper {
     width: 300px;
     height: 275px;
   }
